@@ -19,3 +19,12 @@ class Contact(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+
+# http://zerotobyte.com/complete-guide-to-django-foreignkey/
+
+
+class Note(models.Model):
+    text = models.TextField(max_length=400, null=True, blank=True)
+    note = models.DateTimeField(auto_now_add=True)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, related_name="notes")
